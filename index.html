@@ -476,15 +476,19 @@
           </div>
           <div class="skill-card">
             <h3>Backend Development</h3>
-            <p>Spring Boot, Node.js, RESTful APIs, Microservices</p>
+            <p>Spring Boot, Node.js, Flask, RESTful APIs, Microservices</p>
           </div>
           <div class="skill-card">
             <h3>Database Management</h3>
-            <p>MySQL, PostgreSQL, MongoDB, Database Design</p>
+            <p>SQL, MySQL, PostgreSQL, MongoDB, Database Design</p>
           </div>
           <div class="skill-card">
             <h3>DevOps & Tools</h3>
-            <p>Git, Docker, AWS, CI/CD, Agile Methodologies</p>
+            <p>Git, GitHub, Docker, AWS, CI/CD, Agile Methodologies</p>
+          </div>
+          <div class="skill-card">
+            <h3>Language Proficiency</h3>
+            <p>Java, Python, C, C++, C#</p>
           </div>
         </div>
       </section>
@@ -534,6 +538,20 @@
               </p>
             </div>
           </article>
+          <article class="project-card">
+            <div class="project-content">
+              <h3>Inventory Management System</h3>
+              <div class="project-tech">
+                <span class="tech-tag">React.js</span>
+                <span class="tech-tag">Spring Boot</span>
+                <span class="tech-tag">Hibernate</span>
+              </div>
+              <p>
+                A comprehensive inventory management system with features like
+                stock tracking, supplier management, and purchase history.
+              </p>
+            </div>
+          </article>
         </div>
       </section>
 
@@ -545,12 +563,10 @@
             <p>Grapsign Designs India (Remote) | 2024</p>
             <ul style="list-style-position: inside; margin-top: 1rem">
               <li>
-                Led the development of responsive web applications using modern
+                Development of responsive web applications using modern
                 frameworks
               </li>
-              <li>
-                Optimized application performance and reduced load times by 40%
-              </li>
+              <li>Optimized application performance and reduced load time</li>
               <li>
                 Collaborated with cross-functional teams to deliver high-quality
                 solutions
@@ -570,26 +586,80 @@
               <li>📍 Warje, Pune, Maharashtra</li>
             </ul>
           </div>
-          <form>
+          <form id="contactForm" onsubmit="sendEmail(event)">
             <input
               type="text"
+              id="name"
+              name="name"
               placeholder="Your Name"
               required
               aria-label="Name"
             />
             <input
               type="email"
+              id="email"
+              name="email"
               placeholder="Your Email"
               required
               aria-label="Email"
             />
             <textarea
+              id="message"
+              name="message"
               placeholder="Your Message"
               required
               aria-label="Message"
             ></textarea>
-            <button type="submit" class="btn">Send Message</button>
+            <button type="submit" class="btn" id="submitBtn">
+              <span id="submitText">Send Message</span>
+              <span id="loadingText" style="display: none">Sending...</span>
+            </button>
           </form>
+
+          <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+          <script>
+            (function () {
+              emailjs.init("AY7RPxYvc2cHVtmDf"); // Replace with your EmailJS public key
+            })();
+
+            async function sendEmail(e) {
+              e.preventDefault();
+
+              const submitBtn = document.getElementById("submitBtn");
+              const submitText = document.getElementById("submitText");
+              const loadingText = document.getElementById("loadingText");
+
+              // Disable button and show loading state
+              submitBtn.disabled = true;
+              submitText.style.display = "none";
+              loadingText.style.display = "inline";
+
+              const templateParams = {
+                from_name: document.getElementById("name").value,
+                reply_to: document.getElementById("email").value,
+                message: document.getElementById("message").value,
+              };
+
+              try {
+                await emailjs.send(
+                  "service_8fw2sle", // Replace with your EmailJS service ID
+                  "template_ynu1wmh", // Replace with your EmailJS template ID
+                  templateParams
+                );
+
+                alert("Message sent successfully!");
+                document.getElementById("contactForm").reset();
+              } catch (error) {
+                console.error("Failed to send email:", error);
+                alert("Failed to send message. Please try again.");
+              } finally {
+                // Reset button state
+                submitBtn.disabled = false;
+                submitText.style.display = "inline";
+                loadingText.style.display = "none";
+              }
+            }
+          </script>
         </div>
       </section>
     </main>
@@ -597,7 +667,7 @@
     <footer>
       <div class="container">
         <p>&copy; 2025 Tejas Pawar. All rights reserved.</p>
-        <div class="social-links">
+        <!-- <div class="social-links">
           <a
             href="https://github.com/"
             target="_blank"
@@ -610,7 +680,7 @@
             rel="noopener noreferrer"
             >LinkedIn</a
           >
-        </div>
+        </div> -->
       </div>
     </footer>
   </body>
