@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Tejas Pawar - Fullstack Developer specializing in React.js, Spring Boot, and modern web technologies. View my portfolio, projects, and experience."
+    />
+    <meta
+      name="keywords"
+      content="Tejas Pawar, Fullstack Developer, React.js, Spring Boot, Web Development, Portfolio"
+    />
+    <title>Tejas Pawar | Fullstack Developer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary: #2563eb;
+        --primary-dark: #1d4ed8;
+        --secondary: #64748b;
+        --bg-light: #f8fafc;
+        --text-dark: #1e293b;
+        --text-light: #94a3b8;
+        --spacing-base: 1rem;
+        --transition: all 0.3s ease;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        line-height: 1.6;
+        color: var(--text-dark);
+        background: var(--bg-light);
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 var(--spacing-base);
+      }
+
+      header {
+        background: white;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+
+      nav {
+        height: 4rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-weight: 700;
+        font-size: 1.25rem;
+        color: var(--primary);
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+      }
+
+      .nav-links a {
+        color: var(--text-dark);
+        text-decoration: none;
+        font-weight: 500;
+        transition: var(--transition);
+      }
+
+      .nav-links a:hover {
+        color: var(--primary);
+      }
+
+      .hero {
+        min-height: calc(100vh - 4rem);
+        display: flex;
+        align-items: center;
+        background: linear-gradient(135deg, #2563eb11 0%, #2563eb22 100%);
+      }
+
+      .hero-content {
+        text-align: center;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 4rem 0;
+      }
+
+      .hero h1 {
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        line-height: 1.2;
+        margin-bottom: 1rem;
+        background: linear-gradient(
+          135deg,
+          var(--primary) 0%,
+          var(--primary-dark) 100%
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .hero p {
+        font-size: clamp(1.1rem, 2vw, 1.5rem);
+        color: var(--secondary);
+        margin-bottom: 2rem;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 0.75rem 1.5rem;
+        border-radius: 0.5rem;
+        background: var(--primary);
+        color: white;
+        text-decoration: none;
+        font-weight: 500;
+        transition: var(--transition);
+        border: none;
+        cursor: pointer;
+      }
+
+      .btn:hover {
+        background: var(--primary-dark);
+        transform: translateY(-2px);
+      }
+
+      section {
+        padding: 5rem 0;
+      }
+
+      .section-title {
+        text-align: center;
+        margin-bottom: 3rem;
+        font-size: 2rem;
+        color: var(--text-dark);
+      }
+
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+      }
+
+      .skill-card {
+        background: white;
+        padding: 2rem;
+        border-radius: 1rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        transition: var(--transition);
+      }
+
+      .skill-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+      }
+
+      .project-card {
+        background: white;
+        border-radius: 1rem;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        transition: var(--transition);
+      }
+
+      .project-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .project-content {
+        padding: 1.5rem;
+      }
+
+      .project-tech {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin: 1rem 0;
+      }
+
+      .tech-tag {
+        background: var(--bg-light);
+        padding: 0.25rem 0.75rem;
+        border-radius: 1rem;
+        font-size: 0.875rem;
+        color: var(--primary);
+      }
+
+      .contact-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        align-items: start;
+      }
+
+      .contact-info {
+        list-style: none;
+      }
+
+      .contact-info li {
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      form {
+        display: grid;
+        gap: 1rem;
+      }
+
+      input,
+      textarea {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid var(--text-light);
+        border-radius: 0.5rem;
+        font-family: inherit;
+      }
+
+      textarea {
+        min-height: 150px;
+        resize: vertical;
+      }
+
+      footer {
+        background: white;
+        padding: 2rem 0;
+        text-align: center;
+      }
+
+      .social-links {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+
+      .social-links a {
+        color: var(--primary);
+        text-decoration: none;
+        transition: var(--transition);
+      }
+
+      .social-links a:hover {
+        color: var(--primary-dark);
+      }
+
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+        }
+
+        .hero {
+          min-height: auto;
+        }
+
+        .hero-content {
+          padding: 2rem 0;
+        }
+      }
+
+      @media print {
+        /* Reset background colors and shadows */
+        * {
+          background: transparent !important;
+          color: #000 !important;
+          box-shadow: none !important;
+          text-shadow: none !important;
+          transition: none !important;
+        }
+
+        /* Hide unnecessary elements */
+        header,
+        nav,
+        .btn,
+        form,
+        footer {
+          display: none !important;
+        }
+
+        /* Adjust layout */
+        .container {
+          width: 100%;
+          max-width: none;
+          padding: 0;
+          margin: 0;
+        }
+
+        /* Reset heights and padding */
+        .hero {
+          min-height: 0;
+          padding: 1cm 0;
+        }
+
+        section {
+          padding: 0.5cm 0;
+          page-break-inside: avoid;
+        }
+
+        /* Typography adjustments */
+        body {
+          font-size: 12pt;
+          line-height: 1.4;
+        }
+
+        h1 {
+          font-size: 24pt;
+          margin-bottom: 0.5cm;
+        }
+
+        h2 {
+          font-size: 18pt;
+          margin-bottom: 0.3cm;
+        }
+
+        h3 {
+          font-size: 14pt;
+        }
+
+        /* Ensure links are readable */
+        a {
+          text-decoration: none;
+        }
+
+        a[href]:after {
+          content: " (" attr(href) ")";
+          font-size: 10pt;
+        }
+
+        /* Exception for internal links */
+        a[href^="#"]:after {
+          content: "";
+        }
+
+        /* Grid adjustments */
+        .skills-grid,
+        .projects-grid,
+        .contact-grid {
+          display: block;
+        }
+
+        .skill-card,
+        .project-card {
+          break-inside: avoid;
+          margin-bottom: 0.5cm;
+          border: 1px solid #ccc;
+        }
+
+        /* Adjust contact information */
+        .contact-info {
+          margin: 0.5cm 0;
+        }
+
+        .contact-info li {
+          margin-bottom: 0.2cm;
+        }
+
+        /* Force page breaks */
+        #skills,
+        #projects,
+        #experience {
+          page-break-before: always;
+        }
+
+        /* Remove decorative elements */
+        .tech-tag {
+          border: 1px solid #000;
+          padding: 0.1cm 0.2cm;
+        }
+
+        /* Add URL for resume link */
+        a[href$=".pdf"]:after {
+          content: " (Download PDF version at: " attr(href) ")";
+        }
+
+        /* Optimize images if any */
+        img {
+          max-width: 100% !important;
+        }
+
+        /* Add print-specific header */
+        body:before {
+          content: "Portfolio of Tejas Pawar";
+          display: block;
+          text-align: center;
+          font-size: 18pt;
+          font-weight: bold;
+          margin-bottom: 1cm;
+        }
+
+        /* Add page numbers */
+        @page {
+          margin: 1.5cm;
+        }
+
+        @page :first {
+          margin-top: 2cm;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav class="container">
+        <div class="logo">Tejas Pawar</div>
+        <ul class="nav-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section id="home" class="hero">
+        <div class="hero-content">
+          <h1>Building Digital Experiences</h1>
+          <p>
+            Fullstack Developer specialized in creating modern, scalable web
+            applications
+          </p>
+          <a href="#contact" class="btn">Let's Connect</a>
+        </div>
+      </section>
+
+      <section id="about" class="container">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-content">
+          <p>
+            I'm a passionate Fullstack Developer with expertise in building
+            scalable web applications using modern technologies. With a strong
+            foundation in both front-end and back-end development, I create
+            efficient, user-friendly solutions that deliver real business value.
+          </p>
+          <div style="text-align: center; margin-top: 2rem">
+            <a href="Tejas Pawar Resume.pdf" download class="btn"
+              >Download CV</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <section id="skills" class="container">
+        <h2 class="section-title">Technical Skills</h2>
+        <div class="skills-grid">
+          <div class="skill-card">
+            <h3>Frontend Development</h3>
+            <p>
+              React.js, HTML5, CSS3, JavaScript, Bootstrap, Responsive Design
+            </p>
+          </div>
+          <div class="skill-card">
+            <h3>Backend Development</h3>
+            <p>Spring Boot, Node.js, RESTful APIs, Microservices</p>
+          </div>
+          <div class="skill-card">
+            <h3>Database Management</h3>
+            <p>MySQL, PostgreSQL, MongoDB, Database Design</p>
+          </div>
+          <div class="skill-card">
+            <h3>DevOps & Tools</h3>
+            <p>Git, Docker, AWS, CI/CD, Agile Methodologies</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects" class="container">
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="projects-grid">
+          <article class="project-card">
+            <div class="project-content">
+              <h3>Social Media Platform</h3>
+              <div class="project-tech">
+                <span class="tech-tag">React.js</span>
+                <span class="tech-tag">Spring Boot</span>
+                <span class="tech-tag">MySQL</span>
+              </div>
+              <p>
+                A full-featured social media application with real-time updates,
+                user authentication, and interactive features.
+              </p>
+            </div>
+          </article>
+          <article class="project-card">
+            <div class="project-content">
+              <h3>E-commerce Solution</h3>
+              <div class="project-tech">
+                <span class="tech-tag">React.js</span>
+                <span class="tech-tag">Spring Boot</span>
+                <span class="tech-tag">PostgreSQL</span>
+              </div>
+              <p>
+                Complete e-commerce platform with product management, cart
+                functionality, and secure payment integration.
+              </p>
+            </div>
+          </article>
+          <article class="project-card">
+            <div class="project-content">
+              <h3>Real-Time Chat Application</h3>
+              <div class="project-tech">
+                <span class="tech-tag">WebSocket</span>
+                <span class="tech-tag">React.js</span>
+                <span class="tech-tag">Spring Boot</span>
+              </div>
+              <p>
+                Secure real-time chat application with features like group
+                chats, file sharing, and message encryption.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="experience" class="container">
+        <h2 class="section-title">Professional Experience</h2>
+        <div class="experience-content">
+          <div class="skill-card">
+            <h3>Web Developer</h3>
+            <p>Grapsign Designs India (Remote) | 2024</p>
+            <ul style="list-style-position: inside; margin-top: 1rem">
+              <li>
+                Led the development of responsive web applications using modern
+                frameworks
+              </li>
+              <li>
+                Optimized application performance and reduced load times by 40%
+              </li>
+              <li>
+                Collaborated with cross-functional teams to deliver high-quality
+                solutions
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="container">
+        <h2 class="section-title">Get in Touch</h2>
+        <div class="contact-grid">
+          <div>
+            <ul class="contact-info">
+              <li>📱 +91 7743875005</li>
+              <li>📧 pawartejas197@gmail.com</li>
+              <li>📍 Warje, Pune, Maharashtra</li>
+            </ul>
+          </div>
+          <form>
+            <input
+              type="text"
+              placeholder="Your Name"
+              required
+              aria-label="Name"
+            />
+            <input
+              type="email"
+              placeholder="Your Email"
+              required
+              aria-label="Email"
+            />
+            <textarea
+              placeholder="Your Message"
+              required
+              aria-label="Message"
+            ></textarea>
+            <button type="submit" class="btn">Send Message</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <p>&copy; 2025 Tejas Pawar. All rights reserved.</p>
+        <div class="social-links">
+          <a
+            href="https://github.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            >GitHub</a
+          >
+          <a
+            href="https://linkedin.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            >LinkedIn</a
+          >
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
